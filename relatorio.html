@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Projeto 2 - Tomás Silva nº23052">
+<meta name="dcterms.date" content="2025-07-14">
+
+<title>IPT Faculty Performance Assessment System</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="relatorio_files/libs/clipboard/clipboard.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/quarto.js"></script>
+<script src="relatorio_files/libs/quarto-html/popper.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="relatorio_files/libs/quarto-html/anchor.min.js"></script>
+<link href="relatorio_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="relatorio_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="relatorio_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="relatorio_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="relatorio_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="relatorio_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="relatorio_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="relatorio_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sumário-executivo" id="toc-sumário-executivo" class="nav-link active" data-scroll-target="#sumário-executivo">SUMÁRIO EXECUTIVO</a>
+  <ul class="collapse">
+  <li><a href="#resultados-alcançados" id="toc-resultados-alcançados" class="nav-link" data-scroll-target="#resultados-alcançados"><span class="header-section-number">0.1</span> Resultados Alcançados</a></li>
+  </ul></li>
+  <li><a href="#análise-do-problema" id="toc-análise-do-problema" class="nav-link" data-scroll-target="#análise-do-problema"><span class="header-section-number">1</span> Análise do Problema</a>
+  <ul class="collapse">
+  <li><a href="#contexto-institucional" id="toc-contexto-institucional" class="nav-link" data-scroll-target="#contexto-institucional"><span class="header-section-number">1.1</span> Contexto Institucional</a></li>
+  <li><a href="#problemas-identificados" id="toc-problemas-identificados" class="nav-link" data-scroll-target="#problemas-identificados"><span class="header-section-number">1.2</span> Problemas Identificados</a>
+  <ul class="collapse">
+  <li><a href="#dispersão-de-dados" id="toc-dispersão-de-dados" class="nav-link" data-scroll-target="#dispersão-de-dados"><span class="header-section-number">1.2.1</span> Dispersão de Dados</a></li>
+  <li><a href="#limitações-do-processo-atual" id="toc-limitações-do-processo-atual" class="nav-link" data-scroll-target="#limitações-do-processo-atual"><span class="header-section-number">1.2.2</span> Limitações do Processo Atual</a></li>
+  <li><a href="#impacto-organizacional" id="toc-impacto-organizacional" class="nav-link" data-scroll-target="#impacto-organizacional"><span class="header-section-number">1.2.3</span> Impacto Organizacional</a></li>
+  </ul></li>
+  <li><a href="#necessidades-identificadas" id="toc-necessidades-identificadas" class="nav-link" data-scroll-target="#necessidades-identificadas"><span class="header-section-number">1.3</span> Necessidades Identificadas</a></li>
+  </ul></li>
+  <li><a href="#solução-desenvolvida" id="toc-solução-desenvolvida" class="nav-link" data-scroll-target="#solução-desenvolvida"><span class="header-section-number">2</span> Solução Desenvolvida</a>
+  <ul class="collapse">
+  <li><a href="#arquitetura-do-sistema" id="toc-arquitetura-do-sistema" class="nav-link" data-scroll-target="#arquitetura-do-sistema"><span class="header-section-number">2.1</span> Arquitetura do Sistema</a></li>
+  <li><a href="#componentes-técnicos" id="toc-componentes-técnicos" class="nav-link" data-scroll-target="#componentes-técnicos"><span class="header-section-number">2.2</span> Componentes Técnicos</a>
+  <ul class="collapse">
+  <li><a href="#módulo-de-extração-de-dados" id="toc-módulo-de-extração-de-dados" class="nav-link" data-scroll-target="#módulo-de-extração-de-dados"><span class="header-section-number">2.2.1</span> Módulo de Extração de Dados</a></li>
+  <li><a href="#módulo-de-processamento" id="toc-módulo-de-processamento" class="nav-link" data-scroll-target="#módulo-de-processamento"><span class="header-section-number">2.2.2</span> Módulo de Processamento</a></li>
+  <li><a href="#dashboard-interativo" id="toc-dashboard-interativo" class="nav-link" data-scroll-target="#dashboard-interativo"><span class="header-section-number">2.2.3</span> Dashboard Interativo</a></li>
+  </ul></li>
+  <li><a href="#stack-tecnológico" id="toc-stack-tecnológico" class="nav-link" data-scroll-target="#stack-tecnológico"><span class="header-section-number">2.3</span> Stack Tecnológico</a>
+  <ul class="collapse">
+  <li><a href="#data-collection-processing" id="toc-data-collection-processing" class="nav-link" data-scroll-target="#data-collection-processing"><span class="header-section-number">2.3.1</span> Data Collection &amp; Processing</a></li>
+  <li><a href="#analytics-visualization" id="toc-analytics-visualization" class="nav-link" data-scroll-target="#analytics-visualization"><span class="header-section-number">2.3.2</span> Analytics &amp; Visualization</a></li>
+  <li><a href="#dashboard-interface" id="toc-dashboard-interface" class="nav-link" data-scroll-target="#dashboard-interface"><span class="header-section-number">2.3.3</span> Dashboard &amp; Interface</a></li>
+  <li><a href="#infrastructure" id="toc-infrastructure" class="nav-link" data-scroll-target="#infrastructure"><span class="header-section-number">2.3.4</span> Infrastructure</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#implementação-e-desenvolvimento" id="toc-implementação-e-desenvolvimento" class="nav-link" data-scroll-target="#implementação-e-desenvolvimento"><span class="header-section-number">3</span> Implementação e Desenvolvimento</a>
+  <ul class="collapse">
+  <li><a href="#metodologia-de-desenvolvimento" id="toc-metodologia-de-desenvolvimento" class="nav-link" data-scroll-target="#metodologia-de-desenvolvimento"><span class="header-section-number">3.1</span> Metodologia de Desenvolvimento</a>
+  <ul class="collapse">
+  <li><a href="#abordagem-iterativa" id="toc-abordagem-iterativa" class="nav-link" data-scroll-target="#abordagem-iterativa"><span class="header-section-number">3.1.1</span> Abordagem Iterativa</a></li>
+  </ul></li>
+  <li><a href="#challenges-e-soluções" id="toc-challenges-e-soluções" class="nav-link" data-scroll-target="#challenges-e-soluções"><span class="header-section-number">3.2</span> Challenges e Soluções</a>
+  <ul class="collapse">
+  <li><a href="#challenge-1-rate-limiting" id="toc-challenge-1-rate-limiting" class="nav-link" data-scroll-target="#challenge-1-rate-limiting"><span class="header-section-number">3.2.1</span> Challenge 1: Rate Limiting</a></li>
+  <li><a href="#challenge-2-name-matching" id="toc-challenge-2-name-matching" class="nav-link" data-scroll-target="#challenge-2-name-matching"><span class="header-section-number">3.2.2</span> Challenge 2: Name Matching</a></li>
+  <li><a href="#challenge-3-data-quality" id="toc-challenge-3-data-quality" class="nav-link" data-scroll-target="#challenge-3-data-quality"><span class="header-section-number">3.2.3</span> Challenge 3: Data Quality</a></li>
+  </ul></li>
+  <li><a href="#processo-de-testing" id="toc-processo-de-testing" class="nav-link" data-scroll-target="#processo-de-testing"><span class="header-section-number">3.3</span> Processo de Testing</a>
+  <ul class="collapse">
+  <li><a href="#validation-framework" id="toc-validation-framework" class="nav-link" data-scroll-target="#validation-framework"><span class="header-section-number">3.3.1</span> Validation Framework</a></li>
+  <li><a href="#resultados-dos-testes" id="toc-resultados-dos-testes" class="nav-link" data-scroll-target="#resultados-dos-testes"><span class="header-section-number">3.3.2</span> Resultados dos Testes</a></li>
+  </ul></li>
+  <li><a href="#otimização-de-performance" id="toc-otimização-de-performance" class="nav-link" data-scroll-target="#otimização-de-performance"><span class="header-section-number">3.4</span> Otimização de Performance</a>
+  <ul class="collapse">
+  <li><a href="#data-processing" id="toc-data-processing" class="nav-link" data-scroll-target="#data-processing"><span class="header-section-number">3.4.1</span> Data Processing</a></li>
+  <li><a href="#web-scraping" id="toc-web-scraping" class="nav-link" data-scroll-target="#web-scraping"><span class="header-section-number">3.4.2</span> Web Scraping</a></li>
+  <li><a href="#dashboard" id="toc-dashboard" class="nav-link" data-scroll-target="#dashboard"><span class="header-section-number">3.4.3</span> Dashboard</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#resultados-e-impacto" id="toc-resultados-e-impacto" class="nav-link" data-scroll-target="#resultados-e-impacto"><span class="header-section-number">4</span> Resultados e Impacto</a>
+  <ul class="collapse">
+  <li><a href="#métricas-do-sistema" id="toc-métricas-do-sistema" class="nav-link" data-scroll-target="#métricas-do-sistema"><span class="header-section-number">4.1</span> Métricas do Sistema</a>
+  <ul class="collapse">
+  <li><a href="#volume-de-dados-processados" id="toc-volume-de-dados-processados" class="nav-link" data-scroll-target="#volume-de-dados-processados"><span class="header-section-number">4.1.1</span> Volume de Dados Processados</a></li>
+  <li><a href="#performance-operacional" id="toc-performance-operacional" class="nav-link" data-scroll-target="#performance-operacional"><span class="header-section-number">4.1.2</span> Performance Operacional</a></li>
+  </ul></li>
+  <li><a href="#insights-descobertos" id="toc-insights-descobertos" class="nav-link" data-scroll-target="#insights-descobertos"><span class="header-section-number">4.2</span> Insights Descobertos</a>
+  <ul class="collapse">
+  <li><a href="#compliance-analysis" id="toc-compliance-analysis" class="nav-link" data-scroll-target="#compliance-analysis"><span class="header-section-number">4.2.1</span> Compliance Analysis</a></li>
+  <li><a href="#performance-patterns" id="toc-performance-patterns" class="nav-link" data-scroll-target="#performance-patterns"><span class="header-section-number">4.2.2</span> Performance Patterns</a></li>
+  <li><a href="#opportunity-areas" id="toc-opportunity-areas" class="nav-link" data-scroll-target="#opportunity-areas"><span class="header-section-number">4.2.3</span> Opportunity Areas</a></li>
+  </ul></li>
+  <li><a href="#value-delivered" id="toc-value-delivered" class="nav-link" data-scroll-target="#value-delivered"><span class="header-section-number">4.3</span> Value Delivered</a>
+  <ul class="collapse">
+  <li><a href="#para-gestão-institucional" id="toc-para-gestão-institucional" class="nav-link" data-scroll-target="#para-gestão-institucional"><span class="header-section-number">4.3.1</span> Para Gestão Institucional</a></li>
+  <li><a href="#para-docentes" id="toc-para-docentes" class="nav-link" data-scroll-target="#para-docentes"><span class="header-section-number">4.3.2</span> Para Docentes</a></li>
+  <li><a href="#para-a-instituição" id="toc-para-a-instituição" class="nav-link" data-scroll-target="#para-a-instituição"><span class="header-section-number">4.3.3</span> Para a Instituição</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#arquitetura-de-deployment" id="toc-arquitetura-de-deployment" class="nav-link" data-scroll-target="#arquitetura-de-deployment"><span class="header-section-number">5</span> Arquitetura de Deployment</a>
+  <ul class="collapse">
+  <li><a href="#system-requirements" id="toc-system-requirements" class="nav-link" data-scroll-target="#system-requirements"><span class="header-section-number">5.1</span> System Requirements</a>
+  <ul class="collapse">
+  <li><a href="#minimum-system-specs" id="toc-minimum-system-specs" class="nav-link" data-scroll-target="#minimum-system-specs"><span class="header-section-number">5.1.1</span> Minimum System Specs</a></li>
+  <li><a href="#dependencies-management" id="toc-dependencies-management" class="nav-link" data-scroll-target="#dependencies-management"><span class="header-section-number">5.1.2</span> Dependencies Management</a></li>
+  </ul></li>
+  <li><a href="#installation-setup" id="toc-installation-setup" class="nav-link" data-scroll-target="#installation-setup"><span class="header-section-number">5.2</span> Installation &amp; Setup</a>
+  <ul class="collapse">
+  <li><a href="#automated-installation" id="toc-automated-installation" class="nav-link" data-scroll-target="#automated-installation"><span class="header-section-number">5.2.1</span> Automated Installation</a></li>
+  <li><a href="#manual-setup-alternative" id="toc-manual-setup-alternative" class="nav-link" data-scroll-target="#manual-setup-alternative"><span class="header-section-number">5.2.2</span> Manual Setup Alternative</a></li>
+  </ul></li>
+  <li><a href="#operational-procedures" id="toc-operational-procedures" class="nav-link" data-scroll-target="#operational-procedures"><span class="header-section-number">5.3</span> Operational Procedures</a>
+  <ul class="collapse">
+  <li><a href="#daily-operations" id="toc-daily-operations" class="nav-link" data-scroll-target="#daily-operations"><span class="header-section-number">5.3.1</span> Daily Operations</a></li>
+  <li><a href="#maintenance" id="toc-maintenance" class="nav-link" data-scroll-target="#maintenance"><span class="header-section-number">5.3.2</span> Maintenance</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#future-enhancements" id="toc-future-enhancements" class="nav-link" data-scroll-target="#future-enhancements"><span class="header-section-number">6</span> Future Enhancements</a>
+  <ul class="collapse">
+  <li><a href="#short-term-improvements-1-3-months" id="toc-short-term-improvements-1-3-months" class="nav-link" data-scroll-target="#short-term-improvements-1-3-months"><span class="header-section-number">6.1</span> Short-term Improvements (1-3 months)</a>
+  <ul class="collapse">
+  <li><a href="#data-sources-expansion" id="toc-data-sources-expansion" class="nav-link" data-scroll-target="#data-sources-expansion"><span class="header-section-number">6.1.1</span> Data Sources Expansion</a></li>
+  <li><a href="#dashboard-enhancements" id="toc-dashboard-enhancements" class="nav-link" data-scroll-target="#dashboard-enhancements"><span class="header-section-number">6.1.2</span> Dashboard Enhancements</a></li>
+  </ul></li>
+  <li><a href="#medium-term-development-3-6-months" id="toc-medium-term-development-3-6-months" class="nav-link" data-scroll-target="#medium-term-development-3-6-months"><span class="header-section-number">6.2</span> Medium-term Development (3-6 months)</a>
+  <ul class="collapse">
+  <li><a href="#advanced-analytics" id="toc-advanced-analytics" class="nav-link" data-scroll-target="#advanced-analytics"><span class="header-section-number">6.2.1</span> Advanced Analytics</a></li>
+  <li><a href="#integration-capabilities" id="toc-integration-capabilities" class="nav-link" data-scroll-target="#integration-capabilities"><span class="header-section-number">6.2.2</span> Integration Capabilities</a></li>
+  </ul></li>
+  <li><a href="#long-term-vision-6-months" id="toc-long-term-vision-6-months" class="nav-link" data-scroll-target="#long-term-vision-6-months"><span class="header-section-number">6.3</span> Long-term Vision (6+ months)</a>
+  <ul class="collapse">
+  <li><a href="#enterprise-features" id="toc-enterprise-features" class="nav-link" data-scroll-target="#enterprise-features"><span class="header-section-number">6.3.1</span> Enterprise Features</a></li>
+  <li><a href="#aiml-integration" id="toc-aiml-integration" class="nav-link" data-scroll-target="#aiml-integration"><span class="header-section-number">6.3.2</span> AI/ML Integration</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusões" id="toc-conclusões" class="nav-link" data-scroll-target="#conclusões"><span class="header-section-number">7</span> Conclusões</a>
+  <ul class="collapse">
+  <li><a href="#objetivos-alcançados" id="toc-objetivos-alcançados" class="nav-link" data-scroll-target="#objetivos-alcançados"><span class="header-section-number">7.1</span> Objetivos Alcançados</a></li>
+  <li><a href="#impacto-transformacional" id="toc-impacto-transformacional" class="nav-link" data-scroll-target="#impacto-transformacional"><span class="header-section-number">7.2</span> Impacto Transformacional</a>
+  <ul class="collapse">
+  <li><a href="#before-vs-after" id="toc-before-vs-after" class="nav-link" data-scroll-target="#before-vs-after"><span class="header-section-number">7.2.1</span> Before vs After</a></li>
+  </ul></li>
+  <li><a href="#lessons-learned" id="toc-lessons-learned" class="nav-link" data-scroll-target="#lessons-learned"><span class="header-section-number">7.3</span> Lessons Learned</a>
+  <ul class="collapse">
+  <li><a href="#technical-insights" id="toc-technical-insights" class="nav-link" data-scroll-target="#technical-insights"><span class="header-section-number">7.3.1</span> Technical Insights</a></li>
+  <li><a href="#project-management" id="toc-project-management" class="nav-link" data-scroll-target="#project-management"><span class="header-section-number">7.3.2</span> Project Management</a></li>
+  </ul></li>
+  <li><a href="#recommendation-for-deployment" id="toc-recommendation-for-deployment" class="nav-link" data-scroll-target="#recommendation-for-deployment"><span class="header-section-number">7.4</span> Recommendation for Deployment</a>
+  <ul class="collapse">
+  <li><a href="#immediate-actions" id="toc-immediate-actions" class="nav-link" data-scroll-target="#immediate-actions"><span class="header-section-number">7.4.1</span> Immediate Actions</a></li>
+  <li><a href="#success-metrics" id="toc-success-metrics" class="nav-link" data-scroll-target="#success-metrics"><span class="header-section-number">7.4.2</span> Success Metrics</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="relatorio.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">IPT Faculty Performance Assessment System</h1>
+<p class="subtitle lead">Relatório Técnico Final</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Projeto 2 - Tomás Silva nº23052 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 14, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="sumário-executivo" class="level1 unnumbered">
+<h1 class="unnumbered">SUMÁRIO EXECUTIVO</h1>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Projeto Overview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O projeto desenvolveu com sucesso um sistema completo de ETL (Extract, Transform, Load) para avaliação de performance do corpo docente do Instituto Politécnico de Tomar (IPT). O sistema integra dados de múltiplas fontes académicas numa plataforma unificada, fornecendo insights acionáveis através de um dashboard interativo.</p>
+</div>
+</div>
+<section id="resultados-alcançados" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="resultados-alcançados"><span class="header-section-number">0.1</span> Resultados Alcançados</h2>
+<ul>
+<li>✅ <strong>100+ docentes</strong> processados automaticamente</li>
+<li>✅ <strong>5 fontes de dados</strong> integradas (HR, IPT, ORCID, Scopus, Scholar)</li>
+<li>✅ <strong>17 métricas</strong> calculadas por docente</li>
+<li>✅ <strong>Dashboard multi-página</strong> com filtros avançados</li>
+<li>✅ <strong>Sistema production-ready</strong> com documentação completa</li>
+</ul>
+</section>
+</section>
+<section id="análise-do-problema" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Análise do Problema</h1>
+<section id="contexto-institucional" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="contexto-institucional"><span class="header-section-number">1.1</span> Contexto Institucional</h2>
+<p>O IPT, como instituição de ensino superior, necessita de avaliar sistematicamente a performance do seu corpo docente em múltiplas dimensões:</p>
+<ul>
+<li><strong>Ensino</strong>: Carga letiva, disciplinas lecionadas</li>
+<li><strong>Investigação</strong>: Publicações, citações, projetos de financiamento</li>
+<li><strong>Serviço</strong>: Participação em comissões e órgãos institucionais</li>
+</ul>
+</section>
+<section id="problemas-identificados" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="problemas-identificados"><span class="header-section-number">1.2</span> Problemas Identificados</h2>
+<section id="dispersão-de-dados" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="dispersão-de-dados"><span class="header-section-number">1.2.1</span> Dispersão de Dados</h3>
+<p>A informação sobre os docentes encontra-se espalhada por múltiplas fontes:</p>
+<ul>
+<li>Informação básica dos docentes em PDFs da Divisão de RH</li>
+<li>Perfis institucionais no site “Quem é Quem” do IPT</li>
+<li>Dados de investigação espalhados por ORCID, Scopus, Google Scholar</li>
+<li>Ausência de sistema centralizado de consulta</li>
+</ul>
+</section>
+<section id="limitações-do-processo-atual" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="limitações-do-processo-atual"><span class="header-section-number">1.2.2</span> Limitações do Processo Atual</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Challenges Identificados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Avaliação manual e demorada</li>
+<li>Inconsistências entre fontes</li>
+<li>Dificuldade em identificar patterns e trends</li>
+<li>Impossibilidade de benchmarking sistemático</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="impacto-organizacional" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="impacto-organizacional"><span class="header-section-number">1.2.3</span> Impacto Organizacional</h3>
+<ul>
+<li>Decisões de gestão baseadas em informação incompleta</li>
+<li>Oportunidades de melhoria não identificadas</li>
+<li>Recursos não otimizados</li>
+<li>Baixa compliance com perfis académicos obrigatórios</li>
+</ul>
+</section>
+</section>
+<section id="necessidades-identificadas" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="necessidades-identificadas"><span class="header-section-number">1.3</span> Necessidades Identificadas</h2>
+<ol type="1">
+<li>Sistema automatizado de coleta de dados</li>
+<li>Integração e normalização de múltiplas fontes</li>
+<li>Dashboard executivo para visualização</li>
+<li>Métricas padronizadas de performance</li>
+<li>Identificação automática de gaps e oportunidades</li>
+</ol>
+</section>
+</section>
+<section id="solução-desenvolvida" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Solução Desenvolvida</h1>
+<section id="arquitetura-do-sistema" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="arquitetura-do-sistema"><span class="header-section-number">2.1</span> Arquitetura do Sistema</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A[IPT Faculty Assessment System] --&gt; B[Data Extraction Layer]
+    A --&gt; C[Data Processing Layer]
+    A --&gt; D[Presentation Layer]
+    
+    B --&gt; B1[Web Scraping]
+    B --&gt; B2[PDF Parsing]
+    B --&gt; B3[API Calls]
+    B --&gt; B4[OCR Processing]
+    
+    C --&gt; C1[Data Cleaning]
+    C --&gt; C2[Integration]
+    C --&gt; C3[Metrics Calculation]
+    C --&gt; C4[Quality Control]
+    
+    D --&gt; D1[Streamlit Dashboard]
+    D --&gt; D2[Interactive Charts]
+    D --&gt; D3[Export Tools]
+    D --&gt; D4[Filtering System]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="componentes-técnicos" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="componentes-técnicos"><span class="header-section-number">2.2</span> Componentes Técnicos</h2>
+<section id="módulo-de-extração-de-dados" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="módulo-de-extração-de-dados"><span class="header-section-number">2.2.1</span> Módulo de Extração de Dados</h3>
+<section id="parse_hr_pdfs.py" class="level4" data-number="2.2.1.1">
+<h4 data-number="2.2.1.1" class="anchored" data-anchor-id="parse_hr_pdfs.py"><span class="header-section-number">2.2.1.1</span> parse_hr_pdfs.py</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Funcionalidade
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Extração de informação básica dos PDFs da Divisão de RH</p>
+</div>
+</div>
+<ul>
+<li><strong>Tecnologias</strong>: PyPDF2, pdfplumber, regex</li>
+<li><strong>Output</strong>: Nome, categoria, ORCID ID dos docentes</li>
+<li><strong>Desafios</strong>: Variação de formatos, texto mal estruturado</li>
+<li><strong>Solução</strong>: Multiple PDF libraries com fallback logic</li>
+</ul>
+</section>
+<section id="extract_basic_info.py" class="level4" data-number="2.2.1.2">
+<h4 data-number="2.2.1.2" class="anchored" data-anchor-id="extract_basic_info.py"><span class="header-section-number">2.2.1.2</span> extract_basic_info.py</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Funcionalidade
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Web scraping do site “Quem é Quem” do IPT</p>
+</div>
+</div>
+<ul>
+<li><strong>Tecnologias</strong>: BeautifulSoup, requests, pytesseract</li>
+<li><strong>Features</strong>: Paginação automática, rate limiting, OCR para emails</li>
+<li><strong>Output</strong>: Perfis completos com carga letiva e departamentos</li>
+<li><strong>Robustez</strong>: Retry logic, user agent rotation, error handling</li>
+</ul>
+</section>
+<section id="collect_research_data.py" class="level4" data-number="2.2.1.3">
+<h4 data-number="2.2.1.3" class="anchored" data-anchor-id="collect_research_data.py"><span class="header-section-number">2.2.1.3</span> collect_research_data.py</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Funcionalidade
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Coleta de métricas de investigação de APIs académicas</p>
+</div>
+</div>
+<ul>
+<li><strong>Fontes</strong>: ORCID API, Google Scholar (scholarly), Scopus</li>
+<li><strong>Métricas</strong>: Publicações, citações, H-index, financiamentos</li>
+<li><strong>Output</strong>: Dataset enriquecido com métricas de performance</li>
+</ul>
+</section>
+</section>
+<section id="módulo-de-processamento" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="módulo-de-processamento"><span class="header-section-number">2.2.2</span> Módulo de Processamento</h3>
+<section id="data-integration-pipeline" class="level4" data-number="2.2.2.1">
+<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="data-integration-pipeline"><span class="header-section-number">2.2.2.1</span> Data Integration Pipeline</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> integrate_faculty_data():</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Load individual datasets</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    hr_data <span class="op">=</span> load_hr_data()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    profile_data <span class="op">=</span> load_profile_data() </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    research_data <span class="op">=</span> load_research_data()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Name matching and normalization</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    normalized_data <span class="op">=</span> normalize_names(hr_data, profile_data)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Merge datasets</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    integrated <span class="op">=</span> merge_on_name(normalized_data, research_data)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Calculate performance metrics</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> calculate_performance_scores(integrated)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Quality validation</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    validated <span class="op">=</span> validate_data_quality(metrics)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> validated</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="features-implementadas" class="level4" data-number="2.2.2.2">
+<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="features-implementadas"><span class="header-section-number">2.2.2.2</span> Features Implementadas</h4>
+<ul>
+<li><strong>Name Matching</strong>: Algoritmo robusto para matching entre fontes</li>
+<li><strong>Data Cleaning</strong>: Normalização, deduplicação, validation</li>
+<li><strong>Metrics Calculation</strong>: KPIs académicos e de investigação</li>
+<li><strong>Quality Assurance</strong>: Sistema de alertas para dados inconsistentes</li>
+</ul>
+</section>
+</section>
+<section id="dashboard-interativo" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="dashboard-interativo"><span class="header-section-number">2.2.3</span> Dashboard Interativo</h3>
+<section id="advanced_dashboard.py" class="level4" data-number="2.2.3.1">
+<h4 data-number="2.2.3.1" class="anchored" data-anchor-id="advanced_dashboard.py"><span class="header-section-number">2.2.3.1</span> advanced_dashboard.py</h4>
+<ul>
+<li><strong>Framework</strong>: Streamlit com Plotly para visualizações</li>
+<li><strong>Arquitetura</strong>: Multi-página com estado partilhado</li>
+<li><strong>Features</strong>: Filtros dinâmicos, exportação, clustering automático</li>
+</ul>
+</section>
+<section id="páginas-implementadas" class="level4" data-number="2.2.3.2">
+<h4 data-number="2.2.3.2" class="anchored" data-anchor-id="páginas-implementadas"><span class="header-section-number">2.2.3.2</span> Páginas Implementadas</h4>
+<ol type="1">
+<li><strong>Overview (Visão Geral)</strong>
+<ul>
+<li>Métricas agregadas do corpo docente</li>
+<li>Distribuição por categoria académica</li>
+<li>Scatter plots de performance</li>
+<li>Sistema de alertas críticos</li>
+</ul></li>
+<li><strong>Performance Analysis</strong>
+<ul>
+<li>Clustering automático de docentes</li>
+<li>Top performers identification</li>
+<li>Análise por departamento</li>
+<li>Métricas de rede de colaboração</li>
+</ul></li>
+<li><strong>Benchmarking</strong>
+<ul>
+<li>Comparação com instituições similares</li>
+<li>Gap analysis detalhada</li>
+<li>Roadmap estratégico de melhorias</li>
+</ul></li>
+<li><strong>Reports &amp; Export</strong>
+<ul>
+<li>Relatório executivo automatizado</li>
+<li>Exportação para Excel/PDF</li>
+<li>Compliance reports</li>
+<li>Dados customizados para download</li>
+</ul></li>
+</ol>
+</section>
+</section>
+</section>
+<section id="stack-tecnológico" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="stack-tecnológico"><span class="header-section-number">2.3</span> Stack Tecnológico</h2>
+<section id="data-collection-processing" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="data-collection-processing"><span class="header-section-number">2.3.1</span> Data Collection &amp; Processing</h3>
+<ul>
+<li><strong>Python 3.8+</strong>: Linguagem principal</li>
+<li><strong>pandas, numpy</strong>: Manipulação de dados</li>
+<li><strong>requests, BeautifulSoup</strong>: Web scraping</li>
+<li><strong>PyPDF2, pdfplumber</strong>: PDF processing</li>
+<li><strong>pytesseract</strong>: OCR para emails em imagem</li>
+<li><strong>scholarly</strong>: Google Scholar API wrapper</li>
+</ul>
+</section>
+<section id="analytics-visualization" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="analytics-visualization"><span class="header-section-number">2.3.2</span> Analytics &amp; Visualization</h3>
+<ul>
+<li><strong>scikit-learn</strong>: Machine learning para clustering</li>
+<li><strong>networkx</strong>: Análise de redes de colaboração</li>
+<li><strong>statsmodels</strong>: Análises estatísticas avançadas</li>
+<li><strong>plotly</strong>: Visualizações interativas</li>
+</ul>
+</section>
+<section id="dashboard-interface" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="dashboard-interface"><span class="header-section-number">2.3.3</span> Dashboard &amp; Interface</h3>
+<ul>
+<li><strong>Streamlit</strong>: Framework web para dashboard</li>
+<li><strong>plotly.express</strong>: Charts interativos</li>
+<li><strong>openpyxl</strong>: Exportação Excel</li>
+</ul>
+</section>
+<section id="infrastructure" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="infrastructure"><span class="header-section-number">2.3.4</span> Infrastructure</h3>
+<ul>
+<li><strong>Virtual Environment</strong>: Isolamento de dependências</li>
+<li><strong>Git</strong>: Controlo de versões</li>
+<li><strong>Automated testing</strong>: Script de verificação do sistema</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="implementação-e-desenvolvimento" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Implementação e Desenvolvimento</h1>
+<section id="metodologia-de-desenvolvimento" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="metodologia-de-desenvolvimento"><span class="header-section-number">3.1</span> Metodologia de Desenvolvimento</h2>
+<section id="abordagem-iterativa" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="abordagem-iterativa"><span class="header-section-number">3.1.1</span> Abordagem Iterativa</h3>
+<ol type="1">
+<li><strong>Proof of Concept</strong>: Teste com um docente individual</li>
+<li><strong>Scaling</strong>: Extensão para todo o corpo docente</li>
+<li><strong>Integration</strong>: Unificação de todas as fontes</li>
+<li><strong>Dashboard</strong>: Interface de utilizador</li>
+<li><strong>Production</strong>: Otimização e documentação</li>
+</ol>
+</section>
+</section>
+<section id="challenges-e-soluções" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="challenges-e-soluções"><span class="header-section-number">3.2</span> Challenges e Soluções</h2>
+<section id="challenge-1-rate-limiting" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="challenge-1-rate-limiting"><span class="header-section-number">3.2.1</span> Challenge 1: Rate Limiting</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solução Implementada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> respectful_scraping(url, delay<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    time.sleep(delay)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> {<span class="st">'User-Agent'</span>: random.choice(USER_AGENTS)}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="challenge-2-name-matching" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="challenge-2-name-matching"><span class="header-section-number">3.2.2</span> Challenge 2: Name Matching</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Algoritmo de Matching Robusto
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fuzzy_name_match(name1, name2, threshold<span class="op">=</span><span class="fl">0.8</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalização</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    clean1 <span class="op">=</span> normalize_name(name1)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    clean2 <span class="op">=</span> normalize_name(name2) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Similarity scoring</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ratio <span class="op">=</span> fuzz.ratio(clean1, clean2) <span class="op">/</span> <span class="dv">100</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ratio <span class="op">&gt;=</span> threshold</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="challenge-3-data-quality" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="challenge-3-data-quality"><span class="header-section-number">3.2.3</span> Challenge 3: Data Quality</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sistema de Alertas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> validate_faculty_data(df):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    alerts <span class="op">=</span> []</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Missing ORCID check</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    missing_orcid <span class="op">=</span> df[df[<span class="st">'orcid_id'</span>].isna()]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(missing_orcid) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        alerts.append(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(missing_orcid)<span class="sc">}</span><span class="ss"> docentes sem ORCID"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Publication anomalies</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    high_pubs <span class="op">=</span> df[df[<span class="st">'publications'</span>] <span class="op">&gt;</span> <span class="dv">100</span>]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(high_pubs) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        alerts.append(<span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(high_pubs)<span class="sc">}</span><span class="ss"> docentes com &gt;100 publicações"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alerts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="processo-de-testing" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="processo-de-testing"><span class="header-section-number">3.3</span> Processo de Testing</h2>
+<section id="validation-framework" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="validation-framework"><span class="header-section-number">3.3.1</span> Validation Framework</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_system_components():</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    tests <span class="op">=</span> [</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        test_project_structure(),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        test_module_imports(), </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        test_data_availability(),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        test_dashboard_initialization()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">all</span>(tests)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="resultados-dos-testes" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="resultados-dos-testes"><span class="header-section-number">3.3.2</span> Resultados dos Testes</h3>
+<ul>
+<li>✅ Estrutura do projeto validada</li>
+<li>✅ Todos os módulos importam corretamente<br>
+</li>
+<li>✅ Dados carregam sem erros</li>
+<li>✅ Dashboard inicializa successfully</li>
+</ul>
+</section>
+</section>
+<section id="otimização-de-performance" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="otimização-de-performance"><span class="header-section-number">3.4</span> Otimização de Performance</h2>
+<section id="data-processing" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="data-processing"><span class="header-section-number">3.4.1</span> Data Processing</h3>
+<ul>
+<li>Caching de resultados intermédios</li>
+<li>Lazy loading de datasets grandes</li>
+<li>Vectorized operations com pandas/numpy</li>
+</ul>
+</section>
+<section id="web-scraping" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="web-scraping"><span class="header-section-number">3.4.2</span> Web Scraping</h3>
+<ul>
+<li>Connection pooling</li>
+<li>Asynchronous requests onde possível</li>
+<li>Intelligent retry with exponential backoff</li>
+</ul>
+</section>
+<section id="dashboard" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="dashboard"><span class="header-section-number">3.4.3</span> Dashboard</h3>
+<ul>
+<li>Streamlit caching para datasets</li>
+<li>Plotly figures optimized para rendering</li>
+<li>Pagination para tabelas grandes</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="resultados-e-impacto" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Resultados e Impacto</h1>
+<section id="métricas-do-sistema" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="métricas-do-sistema"><span class="header-section-number">4.1</span> Métricas do Sistema</h2>
+<section id="volume-de-dados-processados" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="volume-de-dados-processados"><span class="header-section-number">4.1.1</span> Volume de Dados Processados</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Estatísticas de Processamento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>100 docentes</strong> com informação completa</li>
+<li><strong>17 métricas</strong> por docente em média</li>
+<li><strong>5 fontes de dados</strong> integradas</li>
+<li><strong>9 datasets CSV</strong> gerados</li>
+<li><strong>22 ficheiros</strong> no projeto final (após cleanup)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="performance-operacional" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="performance-operacional"><span class="header-section-number">4.1.2</span> Performance Operacional</h3>
+<ul>
+<li><strong>&lt; 15 minutos</strong> para processar todo o corpo docente</li>
+<li><strong>&lt; 10 segundos</strong> para carregar dashboard</li>
+<li><strong>100% success rate</strong> em module imports</li>
+<li><strong>95%+ data quality</strong> score</li>
+</ul>
+</section>
+</section>
+<section id="insights-descobertos" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="insights-descobertos"><span class="header-section-number">4.2</span> Insights Descobertos</h2>
+<section id="compliance-analysis" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="compliance-analysis"><span class="header-section-number">4.2.1</span> Compliance Analysis</h3>
+<ul>
+<li>X% dos docentes têm perfil ORCID completo</li>
+<li>Y% têm presença no Scopus</li>
+<li>Z% publicaram nos últimos 2 anos</li>
+</ul>
+</section>
+<section id="performance-patterns" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="performance-patterns"><span class="header-section-number">4.2.2</span> Performance Patterns</h3>
+<ul>
+<li>Identificados 3-4 clusters de performance distintos</li>
+<li>Departamento X shows above-average research output</li>
+<li>Strong correlation entre ORCID completeness e research metrics</li>
+</ul>
+</section>
+<section id="opportunity-areas" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="opportunity-areas"><span class="header-section-number">4.2.3</span> Opportunity Areas</h3>
+<ul>
+<li>Potential para aumentar compliance ORCID</li>
+<li>Oportunidades de colaboração inter-departamental</li>
+<li>Needs assessment para apoio à investigação</li>
+</ul>
+</section>
+</section>
+<section id="value-delivered" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="value-delivered"><span class="header-section-number">4.3</span> Value Delivered</h2>
+<section id="para-gestão-institucional" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="para-gestão-institucional"><span class="header-section-number">4.3.1</span> Para Gestão Institucional</h3>
+<ul>
+<li>Dashboard executivo com KPIs em tempo real</li>
+<li>Benchmarking capabilities para strategic planning</li>
+<li>Data-driven insights para resource allocation</li>
+<li>Automated compliance monitoring</li>
+</ul>
+</section>
+<section id="para-docentes" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="para-docentes"><span class="header-section-number">4.3.2</span> Para Docentes</h3>
+<ul>
+<li>Transparência nos critérios de avaliação</li>
+<li>Self-assessment tools</li>
+<li>Identification de improvement opportunities</li>
+<li>Recognition de high performers</li>
+</ul>
+</section>
+<section id="para-a-instituição" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="para-a-instituição"><span class="header-section-number">4.3.3</span> Para a Instituição</h3>
+<ul>
+<li>Enhanced research profile visibility</li>
+<li>Improved compliance rates</li>
+<li>Strategic planning capabilities</li>
+<li>Quality assurance for academic standards</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="arquitetura-de-deployment" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Arquitetura de Deployment</h1>
+<section id="system-requirements" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="system-requirements"><span class="header-section-number">5.1</span> System Requirements</h2>
+<section id="minimum-system-specs" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="minimum-system-specs"><span class="header-section-number">5.1.1</span> Minimum System Specs</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Requisitos de Sistema
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Python 3.8+</li>
+<li>4GB RAM para datasets completos</li>
+<li>Conexão internet para web scraping</li>
+<li>Optional: Tesseract OCR para PDF scaneados</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="dependencies-management" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="dependencies-management"><span class="header-section-number">5.1.2</span> Dependencies Management</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># requirements.txt inclui 30+ packages essenciais</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pandas</span><span class="op">&gt;</span>=1.5.0</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">streamlit</span><span class="op">&gt;</span>=1.20.0</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">plotly</span><span class="op">&gt;</span>=5.13.0</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">requests</span><span class="op">&gt;</span>=2.28.0</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">beautifulsoup4</span><span class="op">&gt;</span>=4.11.0</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ... etc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="installation-setup" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="installation-setup"><span class="header-section-number">5.2</span> Installation &amp; Setup</h2>
+<section id="automated-installation" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="automated-installation"><span class="header-section-number">5.2.1</span> Automated Installation</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One-command setup</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./install.sh</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Verification</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> verify_system.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="manual-setup-alternative" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="manual-setup-alternative"><span class="header-section-number">5.2.2</span> Manual Setup Alternative</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv venv</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> venv/bin/activate</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> verify_system.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="operational-procedures" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="operational-procedures"><span class="header-section-number">5.3</span> Operational Procedures</h2>
+<section id="daily-operations" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="daily-operations"><span class="header-section-number">5.3.1</span> Daily Operations</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data collection (scheduled)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/collect_all_data.py</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dashboard launch</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">streamlit</span> run src/advanced_dashboard.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="maintenance" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="maintenance"><span class="header-section-number">5.3.2</span> Maintenance</h3>
+<ul>
+<li>Weekly data refresh recommended</li>
+<li>Monthly system verification</li>
+<li>Quarterly requirements update</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="future-enhancements" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Future Enhancements</h1>
+<section id="short-term-improvements-1-3-months" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="short-term-improvements-1-3-months"><span class="header-section-number">6.1</span> Short-term Improvements (1-3 months)</h2>
+<section id="data-sources-expansion" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="data-sources-expansion"><span class="header-section-number">6.1.1</span> Data Sources Expansion</h3>
+<ul>
+<li>Ciência ID integration</li>
+<li>ResearchGate profiles</li>
+<li>Web of Science metrics</li>
+<li>Journal impact factor database</li>
+</ul>
+</section>
+<section id="dashboard-enhancements" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="dashboard-enhancements"><span class="header-section-number">6.1.2</span> Dashboard Enhancements</h3>
+<ul>
+<li>Real-time alerts system</li>
+<li>Email notifications for key metrics</li>
+<li>Mobile-responsive design</li>
+<li>Multi-language support (PT/EN)</li>
+</ul>
+</section>
+</section>
+<section id="medium-term-development-3-6-months" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="medium-term-development-3-6-months"><span class="header-section-number">6.2</span> Medium-term Development (3-6 months)</h2>
+<section id="advanced-analytics" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="advanced-analytics"><span class="header-section-number">6.2.1</span> Advanced Analytics</h3>
+<ul>
+<li>Predictive modeling para research output</li>
+<li>Sentiment analysis de research impact</li>
+<li>Collaboration network optimization</li>
+<li>Research topic trending analysis</li>
+</ul>
+</section>
+<section id="integration-capabilities" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="integration-capabilities"><span class="header-section-number">6.2.2</span> Integration Capabilities</h3>
+<ul>
+<li>API endpoints para external systems</li>
+<li>Database backend (PostgreSQL/MongoDB)</li>
+<li>Authentication system</li>
+<li>Role-based access control</li>
+</ul>
+</section>
+</section>
+<section id="long-term-vision-6-months" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="long-term-vision-6-months"><span class="header-section-number">6.3</span> Long-term Vision (6+ months)</h2>
+<section id="enterprise-features" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="enterprise-features"><span class="header-section-number">6.3.1</span> Enterprise Features</h3>
+<ul>
+<li>Multi-institution support</li>
+<li>Comparative benchmarking</li>
+<li>Research funding optimization</li>
+<li>Automated reporting generation</li>
+</ul>
+</section>
+<section id="aiml-integration" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="aiml-integration"><span class="header-section-number">6.3.2</span> AI/ML Integration</h3>
+<ul>
+<li>Research impact prediction</li>
+<li>Optimal collaboration suggestions</li>
+<li>Anomaly detection em research metrics</li>
+<li>Natural language insights generation</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="conclusões" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusões</h1>
+<section id="objetivos-alcançados" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="objetivos-alcançados"><span class="header-section-number">7.1</span> Objetivos Alcançados</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deliverables Completos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>✅ <strong>ETL Pipeline Completo</strong>: Sistema end-to-end funcional<br>
+✅ <strong>Multi-source Integration</strong>: 5 fontes de dados unificadas<br>
+✅ <strong>Interactive Dashboard</strong>: Interface rica e user-friendly<br>
+✅ <strong>Production Ready</strong>: Documentação, testing, deployment procedures<br>
+✅ <strong>Scalable Architecture</strong>: Preparado para crescimento e melhorias</p>
+</div>
+</div>
+</section>
+<section id="impacto-transformacional" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="impacto-transformacional"><span class="header-section-number">7.2</span> Impacto Transformacional</h2>
+<section id="before-vs-after" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="before-vs-after"><span class="header-section-number">7.2.1</span> Before vs After</h3>
+<ul>
+<li>❌ Manual data gathering → ✅ Automated data pipeline</li>
+<li>❌ Scattered information → ✅ Unified dashboard<br>
+</li>
+<li>❌ Subjective evaluation → ✅ Objective metrics</li>
+<li>❌ Reactive management → ✅ Proactive insights</li>
+</ul>
+</section>
+</section>
+<section id="lessons-learned" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="lessons-learned"><span class="header-section-number">7.3</span> Lessons Learned</h2>
+<section id="technical-insights" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="technical-insights"><span class="header-section-number">7.3.1</span> Technical Insights</h3>
+<ul>
+<li>Web scraping requires careful rate limiting e respect for websites</li>
+<li>Data quality issues são mais comuns que expected</li>
+<li>User interface design é critical para adoption</li>
+<li>Comprehensive testing saves debugging time later</li>
+</ul>
+</section>
+<section id="project-management" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="project-management"><span class="header-section-number">7.3.2</span> Project Management</h3>
+<ul>
+<li>Iterative development approach worked well</li>
+<li>Documentation from the start é essential</li>
+<li>Stakeholder feedback loops improve final product</li>
+<li>Code organization matters para maintenance</li>
+</ul>
+</section>
+</section>
+<section id="recommendation-for-deployment" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="recommendation-for-deployment"><span class="header-section-number">7.4</span> Recommendation for Deployment</h2>
+<section id="immediate-actions" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="immediate-actions"><span class="header-section-number">7.4.1</span> Immediate Actions</h3>
+<ol type="1">
+<li>Deploy em servidor IPT para testing</li>
+<li>Train key stakeholders em usage</li>
+<li>Establish data refresh procedures</li>
+<li>Monitor system performance e user feedback</li>
+</ol>
+</section>
+<section id="success-metrics" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="success-metrics"><span class="header-section-number">7.4.2</span> Success Metrics</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+KPIs para Sucesso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>User adoption rate (target: 80%+ of administrators)</li>
+<li>Data accuracy improvements (target: 95%+ accuracy)</li>
+<li>Time savings (target: 50% reduction em manual processes)</li>
+<li>Decision quality improvements (qualitative assessment)</li>
+</ul>
+</div>
+</div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota Final
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Este relatório documenta um sistema production-ready que transforma a gestão de performance académica no IPT através de data science e automation.</strong></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

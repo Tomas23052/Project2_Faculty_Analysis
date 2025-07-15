@@ -1,0 +1,26 @@
+profile_id,name,department,category,email,profile_url,data_source,scraped_at
+1,Sample Faculty 1,Escola Superior de Educação,Professor Coordenador,faculty1@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=1,generated_sample,2025-07-14T23:20:00.313850
+2,Sample Faculty 2,Escola Superior de Artes Aplicadas,Professor Coordenador,faculty2@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=2,generated_sample,2025-07-14T23:20:00.313878
+3,Sample Faculty 3,Escola Superior de Gestão de Idanha-a-Nova,Assistente,faculty3@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=3,generated_sample,2025-07-14T23:20:00.313883
+4,Sample Faculty 4,Escola Superior de Gestão de Idanha-a-Nova,Professor Adjunto,faculty4@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=4,generated_sample,2025-07-14T23:20:00.313887
+5,Sample Faculty 5,Escola Superior de Saúde,Professor Coordenador,faculty5@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=5,generated_sample,2025-07-14T23:20:00.313890
+6,Sample Faculty 6,Escola Superior de Gestão de Idanha-a-Nova,Assistente,faculty6@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=6,generated_sample,2025-07-14T23:20:00.313894
+7,Sample Faculty 7,Escola Superior de Artes Aplicadas,Professor Adjunto,faculty7@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=7,generated_sample,2025-07-14T23:20:00.313897
+8,Sample Faculty 8,Escola Superior de Educação,Assistente,faculty8@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=8,generated_sample,2025-07-14T23:20:00.313900
+9,Sample Faculty 9,Escola Superior de Saúde,Assistente,faculty9@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=9,generated_sample,2025-07-14T23:20:00.313903
+10,Sample Faculty 10,Escola Superior de Artes Aplicadas,Assistente,faculty10@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=10,generated_sample,2025-07-14T23:20:00.313907
+11,Sample Faculty 11,Escola Superior de Tecnologia e Gestão,Assistente,faculty11@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=11,generated_sample,2025-07-14T23:20:00.313910
+12,Sample Faculty 12,Escola Superior de Saúde,Professor Coordenador,faculty12@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=12,generated_sample,2025-07-14T23:20:00.313914
+13,Sample Faculty 13,Escola Superior de Tecnologia e Gestão,Professor Coordenador,faculty13@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=13,generated_sample,2025-07-14T23:20:00.313916
+14,Sample Faculty 14,Escola Superior de Educação,Professor Coordenador,faculty14@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=14,generated_sample,2025-07-14T23:20:00.313920
+15,Sample Faculty 15,Escola Superior de Tecnologia e Gestão,Assistente,faculty15@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=15,generated_sample,2025-07-14T23:20:00.313923
+16,Sample Faculty 16,Escola Superior de Gestão de Idanha-a-Nova,Professor Coordenador,faculty16@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=16,generated_sample,2025-07-14T23:20:00.313944
+17,Sample Faculty 17,Escola Superior de Tecnologia e Gestão,Professor Coordenador,faculty17@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=17,generated_sample,2025-07-14T23:20:00.313947
+18,Sample Faculty 18,Escola Superior de Educação,Professor Coordenador,faculty18@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=18,generated_sample,2025-07-14T23:20:00.313952
+19,Sample Faculty 19,Escola Superior de Gestão de Idanha-a-Nova,Professor Adjunto,faculty19@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=19,generated_sample,2025-07-14T23:20:00.313955
+20,Sample Faculty 20,Escola Superior de Saúde,Professor Adjunto,faculty20@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=20,generated_sample,2025-07-14T23:20:00.313957
+21,Sample Faculty 21,Escola Superior de Educação,Professor Coordenador,faculty21@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=21,generated_sample,2025-07-14T23:20:00.313961
+22,Sample Faculty 22,Escola Superior de Saúde,Professor Coordenador,faculty22@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=22,generated_sample,2025-07-14T23:20:00.313964
+23,Sample Faculty 23,Escola Superior de Saúde,Professor Adjunto,faculty23@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=23,generated_sample,2025-07-14T23:20:00.313967
+24,Sample Faculty 24,Escola Superior de Tecnologia e Gestão,Professor Adjunto,faculty24@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=24,generated_sample,2025-07-14T23:20:00.313970
+25,Sample Faculty 25,Escola Superior de Artes Aplicadas,Professor Adjunto,faculty25@ipt.pt,https://portal2.ipt.pt/pt/quem_e_quem/previewPerfil.php?id=25,generated_sample,2025-07-14T23:20:00.313973

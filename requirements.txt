@@ -1,0 +1,48 @@
+# IPT Faculty Performance Assessment System - Requirements
+# Core dependencies for data collection, processing, and dashboard
+
+# Core Data Processing
+pandas>=1.5.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Web Scraping & HTTP
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+selenium>=4.8.0
+urllib3>=1.26.0
+
+# PDF Processing
+PyPDF2>=3.0.0
+pdfplumber>=0.9.0
+PyMuPDF>=1.21.0
+
+# Image Processing & OCR
+pytesseract>=0.3.10
+Pillow>=9.4.0
+opencv-python>=4.7.0
+
+# Dashboard & Visualization
+streamlit>=1.20.0
+plotly>=5.13.0
+
+# Academic Data APIs
+scholarly>=1.7.0
+
+# File Processing
+openpyxl>=3.1.0
+lxml>=4.9.0
+
+# Browser Automation
+webdriver-manager>=3.8.0
+
+# Utilities
+tqdm>=4.64.0
+python-dotenv>=1.0.0
+
+# Statistical Analysis
+statsmodels>=0.14.0
+scikit-learn>=1.2.0
+
+# Network Analysis
+networkx>=3.0.0

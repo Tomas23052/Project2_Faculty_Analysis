@@ -1,0 +1,4 @@
+type,category,message,priority,action
+ATENÇÃO,Compliance,36 docentes sem ORCID (36.0%),MÉDIA,Programa de apoio ao registo ORCID
+ATENÇÃO,Dados,99 docentes sem email registado,MÉDIA,Atualização da base de dados de contactos
+ATENÇÃO,Dados,99 docentes sem departamento definido,BAIXA,Melhoria do processo de extração de dados
