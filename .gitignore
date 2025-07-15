@@ -1,3 +1,12 @@
 /apresentacao_files/
 /relatorio_files/
 /venv/
+# Large files
+quarto-1.4.554-linux-amd64.deb
+*.deb
+# Cache and temp files
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.vscode/settings.json
