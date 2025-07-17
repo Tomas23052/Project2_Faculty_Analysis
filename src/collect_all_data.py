@@ -45,8 +45,8 @@ def main():
         logger.info("\n🕷️  STEP 2: Scraping IPT 'Quem é Quem' profiles...")
         profile_scraper = IPTProfileScraper()
         
-        # Start with a limited number for testing
-        faculty_profiles = profile_scraper.scrape_all_profiles(limit=10, delay=2)
+        # Use all discovered profiles (no limit)
+        faculty_profiles = profile_scraper.scrape_all_profiles(limit=None, delay=1)
         
         if faculty_profiles.empty:
             logger.warning("No faculty profiles scraped from IPT website")
@@ -57,11 +57,12 @@ def main():
         logger.info("\n📚 STEP 3: Collecting research metrics...")
         research_collector = ResearchDataCollector()
         
-        # Collect with conservative limits for testing
+        # Collect for all faculty members (skip Scholar to avoid rate limits)
         research_metrics = research_collector.collect_all_metrics(
-            orcid_delay=2,      # 2 second delay for ORCID API
-            scholar_delay=5,    # 5 second delay for Google Scholar
-            scholar_limit=5     # Only test with 5 faculty members
+            orcid_delay=1,      # 1 second delay for ORCID API
+            scholar_delay=3,    # 3 second delay for Google Scholar
+            scholar_limit=None, # No limit - process all faculty
+            skip_scholar=True   # Skip Scholar to avoid too many requests error
         )
         
         if research_metrics.empty:

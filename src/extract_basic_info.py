@@ -34,21 +34,207 @@ class IPTProfileScraper:
         self.session.verify = False
         
     def search_faculty_profiles(self):
-        """Get list of all faculty profiles from 'Quem é Quem' with pagination support"""
+        """Get list of all faculty profiles using brute force ID discovery + URL exploration"""
         all_profile_links = []
-        page = 1
         
-        # Try multiple possible URLs for faculty directory
+        # Method 1: Brute force ID ranges (professor's suggestion)
+        logger.info("🚀 Starting brute force ID discovery...")
+        brute_force_profiles = self.brute_force_profile_ids()
+        all_profile_links.extend(brute_force_profiles)
+        
+        # Method 2: Try directory URLs for additional discovery
         urls_to_try = [
             f"{self.base_url}/pt/quem_e_quem/",
             f"{self.base_url}/pt/comunidade/Docentes/",
             f"{self.base_url}/quem_e_quem/"
         ]
         
-        for base_url in urls_to_try:
-            logger.info(f"Trying faculty directory: {base_url}")
+        logger.info("🔍 Exploring directory URLs for additional profiles...")
+        directory_profiles = self.explore_directory_urls(urls_to_try)
+        
+        # Combine and deduplicate
+        for profile in directory_profiles:
+            if not any(p['profile_id'] == profile['profile_id'] for p in all_profile_links):
+                all_profile_links.append(profile)
+        
+        logger.info(f"📊 Total unique profiles found: {len(all_profile_links)}")
+        return all_profile_links
+    
+    def brute_force_profile_ids(self):
+        """Brute force the specific ID ranges: 0-700 and 1000000-1000700"""
+        valid_profiles = []
+        
+        # Define ranges based on professor's suggestion
+        id_ranges = [
+            (0, 700),           # First range: 0-700
+            (1000000, 1000700)  # Second range: 1,000,000 - 1,000,700
+        ]
+        
+        for start_id, end_id in id_ranges:
+            logger.info(f"🔍 Brute forcing IDs from {start_id} to {end_id}...")
+            range_profiles = self.test_id_range(start_id, end_id)
+            valid_profiles.extend(range_profiles)
+            logger.info(f"✅ Found {len(range_profiles)} valid profiles in range {start_id}-{end_id}")
+        
+        return valid_profiles
+    
+    def test_id_range(self, start_id, end_id, batch_size=50):
+        """Test a range of profile IDs in batches"""
+        valid_profiles = []
+        
+        for i in range(start_id, end_id + 1, batch_size):
+            batch_end = min(i + batch_size - 1, end_id)
+            logger.info(f"   Testing IDs {i} to {batch_end}...")
             
-            while True:
+            batch_profiles = []
+            for profile_id in range(i, batch_end + 1):
+                profile = self.test_single_profile_id(profile_id)
+                if profile:
+                    batch_profiles.append(profile)
+                    
+                # Small delay to be respectful
+                time.sleep(0.1)
+            
+            valid_profiles.extend(batch_profiles)
+            logger.info(f"   ✅ Found {len(batch_profiles)} valid profiles in batch {i}-{batch_end}")
+            
+            # Longer delay between batches
+            time.sleep(2)
+        
+        return valid_profiles
+    
+    def test_single_profile_id(self, profile_id):
+        """Test if a single profile ID is valid"""
+        try:
+            url = f"{self.base_url}/previewPerfil.php?id={profile_id}"
+            response = self.session.get(url, timeout=10, verify=False)
+            
+            # Check if response is successful and has content
+            # Lowered threshold from 1000 to 100 based on real data analysis
+            if response.status_code == 200 and len(response.content) > 100:
+                soup = BeautifulSoup(response.content, 'html.parser')
+                
+                # Extract name from profile
+                name = self.extract_name_from_profile(soup)
+                
+                # Validate it's a real profile (has name and substantial content)
+                # Lowered text threshold from 200 to 50 based on real profiles
+                if name and len(name.strip()) > 3 and len(soup.get_text(strip=True)) > 50:
+                    # Additional validation: check for common error indicators
+                    error_indicators = ['erro', 'error', 'not found', 'página não encontrada']
+                    page_text = soup.get_text().lower()
+                    
+                    if not any(indicator in page_text for indicator in error_indicators):
+                        return {
+                            'profile_id': str(profile_id),
+                            'name': name.strip(),
+                            'url': url
+                        }
+            
+        except Exception as e:
+            logger.debug(f"Error testing profile ID {profile_id}: {e}")
+        
+        return None
+    
+    def extract_name_from_profile(self, soup):
+        """Extract name from a profile page with improved logic"""
+        # Try multiple selectors for name extraction
+        name_selectors = [
+            'h1',
+            'h2', 
+            '.profile-name',
+            '.faculty-name',
+            '.nome',
+            '.name',
+            '[class*="name"]',
+            '[class*="nome"]'
+        ]
+        
+        for selector in name_selectors:
+            name_elem = soup.select_one(selector)
+            if name_elem:
+                name = name_elem.get_text(strip=True)
+                # Validate name format (at least first and last name)
+                if self.is_valid_person_name(name):
+                    return name
+        
+        # Fallback: look for text that looks like a name in the content
+        # Based on debug output, names appear in specific patterns
+        text_content = soup.get_text()
+        lines = [line.strip() for line in text_content.split('\n') if line.strip()]
+        
+        # Strategy 1: Look for repeated names (they appear multiple times in profiles)
+        name_candidates = []
+        for line in lines[:20]:  # Check first 20 lines
+            if self.is_valid_person_name(line):
+                name_candidates.append(line)
+        
+        # Find the most common valid name
+        if name_candidates:
+            from collections import Counter
+            name_counts = Counter(name_candidates)
+            most_common = name_counts.most_common(1)[0][0]
+            return most_common
+        
+        # Strategy 2: Look for Portuguese name patterns with regex
+        import re
+        name_patterns = [
+            r'([A-ZÁÊÇÃO][a-záêção]+(?:\s+[A-ZÁÊÇÃO][a-záêção]+)+)\s*(?:Professor|Dr\.|Dra\.)?',
+            r'([A-ZÁÊÇÃO][a-záêção]+(?:\s+[A-ZÁÊÇÃO][a-záêção]+){1,4})\s*(?:\r?\n|\s{2,})',
+            r'([A-ZÁÊÇÃO][a-záêção]+(?:\s+[A-ZÁÊÇÃO][a-záêção]+)+)(?=\s*Professor|Email)'
+        ]
+        
+        for pattern in name_patterns:
+            matches = re.findall(pattern, text_content)
+            for match in matches:
+                name = match.strip()
+                if self.is_valid_person_name(name):
+                    return name
+        
+        return None
+    
+    def is_valid_person_name(self, text):
+        """Check if text looks like a valid person name"""
+        if not text or len(text) < 5 or len(text) > 80:
+            return False
+        
+        # Exclude common non-name words that appear in profiles
+        exclude_words = [
+            'professor', 'adjunto', 'coordenador', 'assistente', 'convidado',
+            'engenharia', 'informática', 'gestão', 'tecnologia', 'tecnologias',
+            'departamento', 'escola', 'superior', 'instituto', 'politécnico',
+            'licenciatura', 'mestrado', 'doutoramento', 'doutor', 'doutora',
+            'email', 'telefone', 'gabinete', 'ext', 'extensão',
+            'informação', 'comunicação', 'internet', 'coisas',
+            'leciona', 'membro', 'centro', 'investigação', 'cidades', 'inteligentes'
+        ]
+        
+        text_lower = text.lower()
+        for word in exclude_words:
+            if word in text_lower:
+                return False
+        
+        # Check if it has the structure of a name (at least 2 words, starts with capital)
+        words = text.split()
+        if len(words) < 2 or len(words) > 6:
+            return False
+        
+        # Check if words start with capital letters (typical of names)
+        for word in words:
+            if not word[0].isupper() or any(char.isdigit() for char in word):
+                return False
+        
+        return True
+    
+    def explore_directory_urls(self, urls_to_try):
+        """Explore directory URLs for additional profile discovery"""
+        directory_profiles = []
+        
+        for base_url in urls_to_try:
+            logger.info(f"Exploring directory: {base_url}")
+            page = 1
+            
+            while page <= 10:  # Limit to 10 pages per URL
                 # Construct URL for current page
                 if page == 1:
                     url = base_url
@@ -58,122 +244,51 @@ class IPTProfileScraper:
                         f"{base_url}?page={page}",
                         f"{base_url}?p={page}",
                         f"{base_url}page/{page}/",
-                        f"{base_url}?offset={5*(page-1)}"  # 5 profiles per page
+                        f"{base_url}?offset={5*(page-1)}"
                     ]
-                    url = pagination_patterns[0]  # Start with most common pattern
+                    url = pagination_patterns[0]
                 
                 try:
-                    logger.info(f"Fetching page {page} from {url}")
                     response = self.session.get(url, timeout=30, verify=False)
                     
                     if response.status_code != 200:
-                        logger.warning(f"Page {page} returned status {response.status_code}")
                         break
                     
                     soup = BeautifulSoup(response.content, 'html.parser')
-                    page_profile_links = []
+                    page_profiles = []
                     
-                    # Method 1: Look for links to previewPerfil.php
+                    # Look for links to previewPerfil.php
                     links = soup.find_all('a', href=re.compile(r'previewPerfil\.php\?id=\d+'))
                     for link in links:
                         match = re.search(r'id=(\d+)', link['href'])
                         if match:
                             profile_id = match.group(1)
                             name = link.get_text(strip=True)
-                            if name and name not in [p['name'] for p in all_profile_links]:
-                                page_profile_links.append({
+                            if name and name not in [p['name'] for p in directory_profiles]:
+                                page_profiles.append({
                                     'profile_id': profile_id,
                                     'name': name,
                                     'url': urljoin(self.base_url, link['href'])
                                 })
                     
-                    # Method 2: Look for other profile patterns
-                    if not page_profile_links:
-                        all_links = soup.find_all('a', href=True)
-                        for link in all_links:
-                            href = link.get('href', '')
-                            text = link.get_text(strip=True)
-                            
-                            # Check for profile patterns in URL or text
-                            profile_patterns = ['perfil', 'docente', 'professor', 'faculty']
-                            if any(pattern in href.lower() for pattern in profile_patterns):
-                                if text and len(text.split()) >= 2 and text not in [p['name'] for p in all_profile_links]:
-                                    page_profile_links.append({
-                                        'profile_id': len(all_profile_links) + len(page_profile_links) + 1,
-                                        'name': text,
-                                        'url': urljoin(self.base_url, href)
-                                    })
-                    
-                    # Method 3: Look for faculty names in structured elements
-                    if not page_profile_links:
-                        # Look for cards, divs, or other containers with faculty info
-                        faculty_containers = soup.find_all(['div', 'article', 'section'], 
-                                                         class_=re.compile(r'(faculty|docente|profile|staff)', re.I))
-                        for container in faculty_containers:
-                            name_elem = container.find(['h1', 'h2', 'h3', 'h4', 'strong', 'b'])
-                            if name_elem:
-                                name = name_elem.get_text(strip=True)
-                                if name and len(name.split()) >= 2 and name not in [p['name'] for p in all_profile_links]:
-                                    page_profile_links.append({
-                                        'profile_id': len(all_profile_links) + len(page_profile_links) + 1,
-                                        'name': name,
-                                        'url': url  # Use page URL as fallback
-                                    })
-                    
-                    if not page_profile_links:
-                        logger.info(f"No profiles found on page {page}, trying next URL or stopping")
+                    if not page_profiles:
                         break
                     
-                    logger.info(f"Found {len(page_profile_links)} profiles on page {page}")
-                    all_profile_links.extend(page_profile_links)
+                    directory_profiles.extend(page_profiles)
+                    logger.info(f"Found {len(page_profiles)} profiles on page {page} of {base_url}")
                     
-                    # Check for "Next" button or pagination
-                    next_button_found = False
-                    next_patterns = ['next', 'próximo', 'siguiente', 'suivant', '›', '»']
-                    
-                    for pattern in next_patterns:
-                        next_links = soup.find_all('a', string=re.compile(pattern, re.I))
-                        next_links.extend(soup.find_all('a', title=re.compile(pattern, re.I)))
-                        
-                        if next_links:
-                            next_button_found = True
-                            break
-                    
-                    # Also check for pagination by looking at page numbers
-                    page_numbers = soup.find_all('a', string=re.compile(r'^\d+$'))
-                    if page_numbers:
-                        max_page = max([int(a.string) for a in page_numbers if a.string.isdigit()])
-                        if page < max_page:
-                            next_button_found = True
-                    
-                    if not next_button_found:
-                        logger.info(f"No next page found after page {page}")
-                        break
-                        
                     page += 1
-                    
-                    # Safety limit to prevent infinite loops
-                    if page > 50:
-                        logger.warning("Reached page limit of 50, stopping")
-                        break
-                    
-                    # Be respectful with delays
                     time.sleep(1)
                     
-                except requests.RequestException as e:
-                    logger.error(f"Error fetching page {page}: {e}")
-                    break
                 except Exception as e:
-                    logger.error(f"Unexpected error on page {page}: {e}")
+                    logger.error(f"Error exploring {url}: {e}")
                     break
             
-            # If we found profiles, stop trying other URLs
-            if all_profile_links:
-                logger.info(f"Successfully found profiles using {base_url}")
-                break
+            # If we found profiles with this URL, log success
+            if any(p for p in directory_profiles):
+                logger.info(f"Successfully found directory profiles using {base_url}")
         
-        logger.info(f"Total faculty profiles found: {len(all_profile_links)}")
-        return all_profile_links
+        return directory_profiles
     
     def extract_email_from_image(self, img_url):
         """Extract email from image using OCR"""
@@ -295,8 +410,21 @@ class IPTProfileScraper:
             logger.error(f"Error scraping profile {profile_url}: {e}")
             return {'name': profile_name, 'profile_url': profile_url, 'error': str(e)}
     
-    def scrape_all_profiles(self, limit=None, delay=1):
+    def scrape_all_profiles(self, limit=None, delay=1, use_existing=True):
         """Scrape all faculty profiles"""
+        
+        # Check if we should use existing data
+        if use_existing:
+            existing_file = Path("data/faculty_profiles.csv")
+            if existing_file.exists():
+                logger.info(f"✅ Using existing profiles from {existing_file}")
+                try:
+                    df = pd.read_csv(existing_file)
+                    logger.info(f"📊 Loaded {len(df)} existing profiles")
+                    return df
+                except Exception as e:
+                    logger.warning(f"Error reading existing file: {e}, proceeding with fresh scraping")
+        
         try:
             profiles = self.search_faculty_profiles()
             

@@ -242,7 +242,7 @@ class ResearchDataCollector:
         
         return pd.DataFrame(scholar_data)
     
-    def collect_all_metrics(self, orcid_delay=1, scholar_delay=2, scholar_limit=10):
+    def collect_all_metrics(self, orcid_delay=1, scholar_delay=2, scholar_limit=None, skip_scholar=True):
         """Collect all research metrics and create integrated dataset"""
         logger.info("Starting comprehensive research data collection...")
         
@@ -258,8 +258,12 @@ class ResearchDataCollector:
         # Collect ORCID metrics
         orcid_df = self.collect_orcid_metrics(faculty_df, delay=orcid_delay)
         
-        # Collect Google Scholar metrics (limited for testing)
-        scholar_df = self.collect_scholar_metrics(faculty_df, delay=scholar_delay, limit=scholar_limit)
+        # Collect Google Scholar metrics (skip if requested)
+        if not skip_scholar:
+            scholar_df = self.collect_scholar_metrics(faculty_df, delay=scholar_delay, limit=scholar_limit)
+        else:
+            logger.info("Skipping Google Scholar collection (skip_scholar=True)")
+            scholar_df = pd.DataFrame()
         
         # Merge all data
         research_df = faculty_df.copy()
